@@ -48,10 +48,10 @@ const images = [
 
 const galeryList = document.querySelector(".gallery")
 
-const listMarkup = images.map(({url, alt}) => `<li><img src="${url}" alt="${alt}"
+const listMarkup = images.map(({url, alt}) => `<li><img src="${url}" alt="${alt}" width="300"
 </li>`).join("")
 
-galeryList.insertAdjacentHTML('beforeEnd',listMarkup)
+galeryList.insertAdjacentHTML('beforeEnd', listMarkup)
 
 
 // images.forEach(img => {
