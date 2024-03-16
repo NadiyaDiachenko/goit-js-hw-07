@@ -18,19 +18,55 @@
 // Усі елементи повинні мати випадковий колір фону. Використовуй готову функцію getRandomHexColor() для отримання випадкового кольору.
 // Для очищення колекції після натискання на кнопку Destroy створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи всі створені елементи.
 
-
-
-// let squareWidth = "30";
-// let squareHight = "30"
-// console.log(squareWidth);
-
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
 
-const input = document.querySelector(".input-first");
-const btn = document.querySelector(".btn-input");
-const btnDestroy = document.querySelector(".btn-destroy")
+const input = document.querySelector("input");
+const renderBtn = document.querySelector("button[data-create]");
+const btnDestroy = document.querySelector("button[data-destroy]")
+const boxesContainer = document.querySelector("#boxes");
 
+const generatedBoxesMarkup = [];
+
+renderBtn.addEventListener("click", () => {
+  createBoxes(input.value)
+boxesContainer.append(...generatedBoxesMarkup)
+
+let increaseNumber = 0
+
+generatedBoxesMarkup.forEach(element => {
+  element.style.width = `${element.offsetWidth + increaseNumber}px`
+  element.style.height = `${element.offsetHeight + increaseNumber}px`
+
+  increaseNumber += 10;
+})
+})
+
+
+
+function createBoxes(amount) {
+
+for (let i = 0; i < amount; i += 1) {
+  const box = document.createElement("div")
+  box.style.height = "30px";
+  box.style.width = "30px";
+  box.style.backgroundColor = getRandomHexColor();
+
+  generatedBoxesMarkup.push(box)
+}
+}
+
+
+function destroyBoxes(){
+ 
+  btnDestroy.innerHtml = ""
+  
+}
+
+// btnDestroy.addEventListener("click", () =>{
+//   boxesContainer = "";
+
+// })
