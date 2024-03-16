@@ -29,20 +29,22 @@ const renderBtn = document.querySelector("button[data-create]");
 const btnDestroy = document.querySelector("button[data-destroy]")
 const boxesContainer = document.querySelector("#boxes");
 
-const generatedBoxesMarkup = [];
+let generatedBoxesMarkup = [];
 
 renderBtn.addEventListener("click", () => {
+  boxesContainer.innerHTML = ""
   createBoxes(input.value)
-boxesContainer.append(...generatedBoxesMarkup)
+// boxesContainer.append(...generatedBoxesMarkup)
 
-let increaseNumber = 0
+// let increaseNumber = 0
 
-generatedBoxesMarkup.forEach(element => {
-  element.style.width = `${element.offsetWidth + increaseNumber}px`
-  element.style.height = `${element.offsetHeight + increaseNumber}px`
+// generatedBoxesMarkup.forEach(element => {
+//   element.style.width = `${element.offsetWidth + increaseNumber}px`
+//   element.style.height = `${element.offsetHeight + increaseNumber}px`
 
-  increaseNumber += 10;
-})
+//   increaseNumber += 10;
+// })
+input.value = "";
 })
 
 
@@ -50,23 +52,26 @@ generatedBoxesMarkup.forEach(element => {
 function createBoxes(amount) {
 
 for (let i = 0; i < amount; i += 1) {
+
   const box = document.createElement("div")
-  box.style.height = "30px";
-  box.style.width = "30px";
+  box.style.height = 30+10 * i + "px";
+  box.style.width = 30+10 * i + "px";
   box.style.backgroundColor = getRandomHexColor();
+
 
   generatedBoxesMarkup.push(box)
 }
+boxesContainer.append(...generatedBoxesMarkup)
+generatedBoxesMarkup = []
 }
 
 
 function destroyBoxes(){
- 
-  btnDestroy.innerHtml = ""
+ console.log(boxesContainer);
+ boxesContainer.innerHTML = "";
+  input.value = "";
   
 }
 
-// btnDestroy.addEventListener("click", () =>{
-//   boxesContainer = "";
 
-// })
+btnDestroy.addEventListener("click", destroyBoxes)
